@@ -82,3 +82,6 @@ vim.cmd 'vnoremap P "0P'
 
 -- Toggle the QuickFix window
 vim.api.nvim_set_keymap("", "<C-q>", ":call QuickFixToggle()<CR>", { noremap = true, silent = true })
+-- Alternate way to save
+vim.api.nvim_set_keymap('n', '<C-s>', ':w<CR>', {noremap = true, silent = true}) -- normal mode
+vim.api.nvim_set_keymap('i', '<C-s>', '<ESC>:w<CR>', {noremap = true, silent = true}) -- insert mode
