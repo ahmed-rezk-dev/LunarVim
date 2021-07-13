@@ -4,9 +4,10 @@ function lv_utils.reload_lv_config()
   vim.cmd "source ~/.config/nvim/lv-config.lua"
   vim.cmd "source ~/.config/nvim/lua/plugins.lua"
   vim.cmd "source ~/.config/nvim/lua/settings.lua"
-  vim.cmd "source ~/.config/nvim/lua/lv-formatter/init.lua"
+  vim.cmd "source ~/.config/nvim/lua/core/formatter.lua"
   vim.cmd ":PackerCompile"
   vim.cmd ":PackerInstall"
+  -- vim.cmd ":PackerClean"
 end
 
 function lv_utils.check_lsp_client_active(name)
@@ -43,7 +44,6 @@ end
 
 lv_utils.define_augroups {
 
-  _user_autocommands = O.user_autocommands,
   _general_settings = {
     {
       "TextYankPost",
@@ -54,6 +54,11 @@ lv_utils.define_augroups {
       "BufWinEnter",
       "*",
       "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+    },
+    {
+      "BufWinEnter",
+      "dashboard",
+      "setlocal cursorline signcolumn=yes cursorcolumn number",
     },
     {
       "BufRead",
@@ -96,6 +101,7 @@ lv_utils.define_augroups {
     -- will cause split windows to be resized evenly if main window is resized
     { "BufWritePost", "plugins.lua", "PackerCompile" },
   },
+
   -- _fterm_lazygit = {
   --   -- will cause esc key to exit lazy git
   --   {"TermEnter", "*", "call LazyGitNativation()"}
@@ -107,6 +113,7 @@ lv_utils.define_augroups {
   --   {'InsertEnter', '*', 'if &cursorline | let g:ms_cursorlineoff = 1 | setlocal nocursorline | endif'},
   --   {'InsertLeave', '*', 'if exists("g:ms_cursorlineoff") | setlocal cursorline | endif'},
   -- },
+  _user_autocommands = O.user_autocommands,
 }
 
 vim.cmd [[
