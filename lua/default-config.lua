@@ -10,7 +10,7 @@ O = {
   line_wrap_cursor_movement = true,
   transparent_window = false,
   format_on_save = true,
-  vnsip_dir = vim.fn.stdpath "config" .. "/snippets",
+  vsnip_dir = vim.fn.stdpath "config" .. "/snippets",
 
   default_options = {
     backup = false, -- creates a backup file
@@ -79,6 +79,11 @@ O = {
     { "FileType", "qf", "set nobuflisted" },
   },
 
+  formatters = {
+    filetype = {},
+  },
+
+  -- TODO move all of this into lang specific files, only require when using
   lang = {
     cmake = {
       formatter = {
@@ -113,7 +118,7 @@ O = {
     docker = {},
     efm = {},
     elm = {},
-    emmet = { active = true },
+    emmet = { active = false },
     elixir = {},
     graphql = {},
     go = {
@@ -126,6 +131,10 @@ O = {
     java = {
       java_tools = {
         active = false,
+      },
+      formatter = {
+        exe = "prettier",
+        args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
       },
     },
     json = {
@@ -253,13 +262,14 @@ O = {
         "typescript",
         "typescriptreact",
       },
+    },
+    terraform = {
       formatter = {
-        exe = "prettier",
-        args = { "--write", "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
+        exe = "terraform",
+        args = { "fmt" },
         stdin = false,
       },
     },
-    terraform = {},
     tsserver = {
       -- @usage can be 'eslint' or 'eslint_d'
       linter = "",
@@ -270,8 +280,7 @@ O = {
       },
       formatter = {
         exe = "prettier",
-        args = { "--write", "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
-        stdin = false,
+        args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0), "--single-quote" },
       },
     },
     vim = {},
