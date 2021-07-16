@@ -17,6 +17,10 @@ end
 if O.transparent_window then
   cmd "au ColorScheme * hi Normal ctermbg=none guibg=none"
   cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
+  cmd "au ColorScheme * hi NormalNC ctermbg=none guibg=none"
+  cmd "au ColorScheme * hi MsgArea ctermbg=none guibg=none"
+  cmd "au ColorScheme * hi TelescopeBorder ctermbg=none guibg=none"
+  cmd "au ColorScheme * hi NvimTreeNormal ctermbg=none guibg=none"
   cmd "let &fcs='eob: '"
 end
 
@@ -46,7 +50,7 @@ local disabled_built_ins = {
 }
 
 if O.leader_key == " " or O.leader_key == "space" then
-  vim.g.mapleader = ' '
+  vim.g.mapleader = " "
 else
   vim.g.mapleader = O.leader_key
 end
