@@ -23,3 +23,9 @@ lv-settings.lua
 lua/lv-user/
 lua/core/nvimtree.lua
 lua/lv-user-config/
+
+*.tmp
+*.temp
+*.bak
+*.backup
+*.old
